@@ -61,7 +61,7 @@ function Cell(i,j) {
 
 		if(this.visited) {
 			noStroke();
-			fill(255, 0, 0, 100);
+			fill(84, 206, 141, 100);
 			rect(x, y, w, w);
 		}
 		
