@@ -1,4 +1,4 @@
-# maze-generator-p5.js
+# Maze Generator
 
 [Demo](https://nerconer.github.io/maze-generator-p5.js/)
 
