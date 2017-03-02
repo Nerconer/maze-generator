@@ -45,7 +45,37 @@ function Cell(i,j) {
 	this.show = function () {
 		var x = this.i * w;
 		var y = this.j * w;
-		stroke(255);
+
+		push();
+		if(this.visited) {
+			noStroke();
+			if(color) {
+				if(this.j % 8 == 0)
+				fill(136, 37, 136);
+				else if(this.j % 8 == 1)
+					fill(41, 24, 136);
+				else if(this.j % 8 == 2)
+					fill(46, 135, 194);
+				else if(this.j % 8 == 3)
+					fill(60, 140, 10);
+				else if(this.j % 8 == 4)
+					fill(254, 250, 41);
+				else if(this.j % 8 == 5)
+					fill(238, 134, 38);
+				else if(this.j % 8 == 6)
+					fill(230, 46 , 37);
+				else if(this.j % 8 == 7)
+					fill(230, 72, 134);
+				//else fill(84, 206, 141, 100);
+			} else {
+				fill(84, 206, 141);
+			}		
+			rect(x, y, w, w);
+		}
+		pop();
+
+		strokeWeight(2);
+		stroke(0);
 		if(this.walls[0]) {
 			line(x,		y,	x + w,		y);
 		}
@@ -57,12 +87,6 @@ function Cell(i,j) {
 		}
 		if(this.walls[3]) {
 			line(x,		y + w,	x,		y);
-		}
-
-		if(this.visited) {
-			noStroke();
-			fill(84, 206, 141, 100);
-			rect(x, y, w, w);
 		}
 		
 	}

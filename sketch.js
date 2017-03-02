@@ -1,18 +1,44 @@
 
 var rows, cols;
-var w = 20;
+var w = 30;
 var grid = [];
 
 var current;
 
 var stack = [];
 
+var canvas;
+
+var color;
+
 function setup() {
-	createCanvas(400, 400);
+	canvas = createCanvas(1200, 600);
+	canvas.parent('sketch');
+	resetSketch();
+
+	var buttonReset = createButton("Reset");
+	buttonReset.parent('sketch');
+	var buttonColor = createButton("Change color!");
+	buttonColor.parent('sketch');
+
+	buttonReset.mousePressed(resetSketch);
+	buttonColor.mousePressed(changeColor);
+
+	color = false;
+
+}
+
+function changeColor() {
+	color = !color;
+}
+
+function resetSketch() {
 	cols = floor(width / w);
 	rows = floor(height / w);
-	//frameRate(5);
+	//frameRate(20);
 
+	stack = [];
+	grid = [];
 	for(var j = 0; j < rows; j++) {
 		for (var i = 0; i < cols; i++) {
 			var cell = new Cell(i,j);
@@ -24,7 +50,7 @@ function setup() {
 }
 
 function draw() {
-  background(0, 50, 70);
+  background(44, 119, 152);
   for(var i = 0; i < grid.length; i++) {
   	grid[i].show();
   }
@@ -35,15 +61,10 @@ function draw() {
   var next = current.checkNeighbors();
   if (next) {
   	next.visited = true;
-
   	// step 2
   	stack.push(current);
-
   	// step 3
   	removeWalls(current, next);
-
-
-
   	// step 4
   	current = next;
   } else if (stack.length > 0) {
