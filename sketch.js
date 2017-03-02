@@ -10,22 +10,33 @@ var stack = [];
 var canvas;
 
 var color;
+var bigSize;
 
 function setup() {
-	canvas = createCanvas(1200, 600);
-	canvas.parent('sketch');
+	bigSize = true;
 	resetSketch();
 
-	var buttonReset = createButton("Reset");
-	buttonReset.parent('sketch');
-	var buttonColor = createButton("Change color!");
-	buttonColor.parent('sketch');
+	var buttonSize = createButton("Change size");
+	buttonSize.parent('options');
 
-	buttonReset.mousePressed(resetSketch);
+	var buttonColor = createButton("Change color");
+	buttonColor.parent('options');
+
+	var buttonReset = createButton("Reset");
+	buttonReset.parent('options');
+
+
 	buttonColor.mousePressed(changeColor);
+	buttonReset.mousePressed(resetSketch);
+	buttonSize.mousePressed(resize);
 
 	color = false;
 
+}
+
+function resize() {
+	bigSize = !bigSize;
+	resetSketch();
 }
 
 function changeColor() {
@@ -33,6 +44,13 @@ function changeColor() {
 }
 
 function resetSketch() {
+	if(bigSize)
+		canvas = createCanvas(1200, 600);
+	else {
+		canvas = createCanvas(300, 300);
+	}
+	canvas.parent('sketch');
+
 	cols = floor(width / w);
 	rows = floor(height / w);
 	//frameRate(20);
