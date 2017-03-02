@@ -51,7 +51,7 @@ function Cell(i,j) {
 			noStroke();
 			if(color) {
 				if(this.j % 8 == 0)
-				fill(136, 37, 136);
+					fill(136, 37, 136);
 				else if(this.j % 8 == 1)
 					fill(41, 24, 136);
 				else if(this.j % 8 == 2)
